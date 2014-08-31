@@ -1,0 +1,1 @@
+User preferences go in this directory.
