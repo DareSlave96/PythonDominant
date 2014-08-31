@@ -369,20 +369,16 @@ def create_play_list():
 def check_lines( a ):
 	global play_list
 	a = a.readlines()
-	print(a)
 	thing = []
 	for line in a:
-		print(line)
 		mod = line.rstrip( '\n' )
 		line_list = mod.split()
 		write = True
 		if '**limit' in line_list or '**toy' in line_list or '**clothing' in line_list or '**sub_gender' in play_list or '**dom_gender' in play_list:
-			print('stuff')
 			h = 0
 			while h < len(line_list):
 				if '**' in line_list[h]:
 					if line_list[h] == '**limit':
-						print('limits')
 						if line_list[h+1] == 'anal':
 							if not 'anal' in limits: bananaa = 0
 							else: write = False
@@ -399,13 +395,10 @@ def check_lines( a ):
 							if not 'holing shit' in limits: bananaa = 0
 							else: write = False
 						elif line_list[h+1] == 'shitEat':
-							print('eating shit')
 							if not 'eating shit' in limits: 
 								bananaa = 0
-								print('added')
 							else: 
 								write = False
-								print('not added')
 						elif line_list[h+1] == 'pain':
 							if not 'pain' in limits: bananaa = 0
 							else: write = False
@@ -461,7 +454,7 @@ def check_lines( a ):
 						elif line_list[h+1] == 'chastity':
 							if 'chastity belt' in items: bananaa = 0
 							else: write = False
-						elif line_list[h+1] == 'daiper':
+						elif line_list[h+1] == 'diaper':
 							if 'daiper' in items: bananaa = 0
 							else: write = False
 						elif line_list[h+1] == 'paddle':
@@ -516,16 +509,19 @@ def check_lines( a ):
 							write = False
 					elif line_list[h] == '**dom_gender':
 						if line_list[h+1] == 'male':
-							if dom_gender == 'male': bananaa = 0
-							else: write = False
+							if dom_gender == 'male': 
+								bananaa = 0
+							else: 
+								write = False
 						elif line_list[h+1] == 'female':
-							if dom_gender == 'female': bananaa = 0
-							else: write = False
+							if dom_gender == 'female':
+								bananaa = 0
+							else: 
+								write = False
 						else:
 							write = False
 					else:
 						write = False
-						print('no valid tag')
 					line_list.remove( line_list[h] )
 					line_list.remove( line_list[h] )
 				else:
@@ -546,28 +542,20 @@ def repeat():
 	threading.Timer(60.0, repeat).start()
 	### Do stuff
 	global des_anal
-	global des_pissSelf
-	global des_pissDrink
-	global des_shitSelf
-	global des_shitHold
-	global des_shitEat
+	global des_piss
+	global des_shit
 	global des_pain
 	global des_CBT
 	global des_humiliation
-	global des_hPublic
-	global des_oPublic
+	global des_public
 	global des_play
 	des_anal = des_anal + randRange( 0, 5 )
-	des_pissSelf = des_pissSelf + randRange( 0, 5 )
-	des_pissDrink = des_pissDrink + randRange( 0, 5 )
-	des_shitSelf = des_shitSelf + randRange( 0, 5 )
-	des_shitHold = des_shitHold + randRange( 0, 5 )
-	des_shitEat = des_shitEat + randRange( 0, 5 )
+	des_piss = des_piss + randRange( 0, 5 )
+	des_shit = des_shit + randRange( 0, 5 )
 	des_pain = des_pain + randRange( 0, 5 )
 	des_CBT = des_CBT + randRange( 0, 5 )
 	des_humiliation = des_humiliation + randRange( 0, 5 )
-	des_hPublic = des_hPublic + randRange( 0, 5 )
-	des_oPublic = des_oPublic + randRange( 0, 5 )
+	des_public = des_public + randRange( 0, 5 )
 	des_play = des_play + randRange( 0, 3 )
 	save_prefs()
 repeat()
