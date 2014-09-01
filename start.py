@@ -14,6 +14,11 @@ limits_master = ['anal','pissing yourself','drinking piss','shitting yourself','
 items_master = ['small dildo','medium dildo','large dildo','small butt plug','medium butt plug','large butt plug','inflatable butt plug','vibrator','blindfold','gag','collar','chastity belt','daiper','paddle','wooden spoon','clothes peg','clover clamp','tweezer clamp']
 clothes_master = ['male boxer shorts','mens briefs','a skirt','a dress','a blouse','a bra','ladies briefs']
 
+list_ruin = []
+list_cum = []
+list_edge = []
+list_stroke = []
+
 ### Variables to store dom(me)s mood and desires
 des_anal = 0
 des_piss = 0
@@ -57,7 +62,7 @@ def play():
 			print('Please answer each order with a \'Yes Sir\' when you\'ve completed your order')
 		elif dom_gender == 'female':
 			print('Please answer each command with a \'Yes Miss\' when you\'ve completed your order')
-		print('Say \'STOP\' to stop play.')
+		print('Say \'STOP\' or your safeword to stop play.')
 		playing = True
 		while playing == True:
 			## Play session
@@ -114,27 +119,24 @@ def question():
 				global pnts
 				pnts = pnts - 25
 				if pnts >= 50:
-					print('You may edge once only')
-				elif pnts >= 75:
-					print('You may edge twice today')
+					a = randRange( 0, len(list_edge) - 1 )
+					print( list_edge[a] )
 				else:
 					print('You cannot edge today, you\'ve also lost some points')
 			elif 'cum' in UIn:
 				global pnts
 				pnts = pnts - 50
 				if pnts >= 150:
-					print('You can have a full orgasm today :)')
-				elif pnts >= 100:
-					print('You can have a ruined orgasm')
+					a = randRange( 0, len(list_ruin) - 1 )
+					print( list_ruin[a] )
 				else:
 					print('You can\'t cum yet, what are you?')
 			elif 'orgasm' in UIn:
 				global pnts
 				pnts = pnts - 100;
 				if pnts >= 250:
-					print('You can have a nice, full orgasm today.')
-				elif pnts >= 150:
-					print('You have to ruin your orgasm ;)')
+					a = randRange( 0, len(list_cum) - 1 )
+					print( list_cum[a] )
 				else:
 					print('You cannot cum at all today, but edge instead')
 			elif 'pee' in UIn:
@@ -366,6 +368,10 @@ def create_play_list():
 			global instr_public
 			for a in check_lines( f ):
 				instr_public.append( a )
+	## General instructions that don't break any limits
+	with open('data/general.txt') as f:
+		global instr_general
+		instr_general = check_lines( f )
 def check_lines( a ):
 	global play_list
 	a = a.readlines()
@@ -374,7 +380,8 @@ def check_lines( a ):
 		mod = line.rstrip( '\n' )
 		line_list = mod.split()
 		write = True
-		if '**limit' in line_list or '**toy' in line_list or '**clothing' in line_list or '**sub_gender' in play_list or '**dom_gender' in play_list:
+		addTo = 'none'
+		if '**limit' in line_list or '**toy' in line_list or '**clothing' in line_list or '**sub_gender' in play_list or '**dom_gender' in play_list or '||sub_name||' or '*cum*' in line_list or '*edge*' in line_list or '*ruin*' in line_list:
 			h = 0
 			while h < len(line_list):
 				if '**' in line_list[h]:
@@ -524,9 +531,25 @@ def check_lines( a ):
 						write = False
 					line_list.remove( line_list[h] )
 					line_list.remove( line_list[h] )
+				elif '||' in line_list[h]:
+					if line_list[h] == "||sub_name||":
+						line_list[h] = name
+				elif '*ruin*' in line_list:
+					addTo = 'ruin'
+					line_list.remove('*ruin*')
+				elif '*edge*' in line_list:
+					addTo = 'edge'
+					line_list.remove('*edge*')
+				elif '*cum*' in line_list:
+					addTo = 'cum'
+					line_list.remove('*cum*')
+				elif '*stroke*' in line_list:
+					addTo = 'stroke'
+					line_list.remove('*stroke*')
+				
 				else:
 					h = h + 1
-		if write == True:
+		if write == True and addTo == 'none':
 			x = 0
 			mod = ''
 			while x < len(line_list):
@@ -534,8 +557,27 @@ def check_lines( a ):
 				x = x + 1
 			thing.append( mod )
 			play_list.append( mod )
+		if addTo != 'none' and write == True:
+			x = 0
+			mod = ''
+			while x < len(line_list):
+				mod = mod + line_list[x] + ' '
+				x = x + 1
+			if addTo == 'edge':
+				global list_edge
+				list_edge.append(mod)
+			elif addTo == 'ruin':
+				global list_ruin
+				list_ruin.append(mod)
+			elif addTo == 'cum':
+				global list_cum
+				list_cum.append(mod)
+			elif addTo == 'stroke':
+				global list_stroke
+				list_stroke.append(mod)
+				play_list.append(mod)
 	return thing		
-			
+
 ### Repeating function
 def repeat():
 	import threading
