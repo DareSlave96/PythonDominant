@@ -2,6 +2,9 @@ import os.path
 
 ### Assign global arrays & variables
 name = ''
+des_thresh_high = 15
+des_thresh_low = 10
+desire = 'none'
 clothes = []
 items = []
 limits = []
@@ -54,6 +57,7 @@ def main():
 ### Play with the user
 def play():
 	global des_play
+	des_play -= 25
 	if des_play >= 35:
 		### Play
 		print('I will play with you today :)')
@@ -68,8 +72,30 @@ def play():
 			## Play session
 			global play_list
 			global safeword
-			a = randRange( 0, len(play_list) - 1 )
-			print( play_list[a] )
+			global desire
+			check_desires()
+			b = desire
+			if b == 'none':
+				a = randRange( 0, len(play_list) - 1 )
+				print( play_list[a] )
+			elif b == 'piss':
+				a = randRange( 0, len(instr_piss) - 1 )
+				print( instr_piss[a] )
+			elif b == 'shit':
+				a = randRange( 0, len(instr_shit) - 1 )
+				print( instr_shit[a] )
+			elif b == 'pain':
+				a = randRange( 0, len(instr_pain) - 1 )
+				print( instr_pain[a] )
+			elif b == 'CBT':
+				a = randRange( 0, len(instr_CBT) - 1 )
+				print( instr_CBT[a] )
+			elif b == 'humiliation':
+				a = randRange( 0, len(instr_humiliation) - 1 )
+				print( instr_humiliation[a] )
+			elif b == 'public':
+				a = randRange( 0, len(instr_public) - 1 )
+				print( instr_public[a] )
 			Input = True
 			while Input == True:
 				UIn = input('>>> ')
@@ -79,13 +105,85 @@ def play():
 				elif UIn == 'STOP':
 					Input = False
 					playing = False
-				elif UIn == 'Yes Miss' or UIn == 'Yes Sir':
+				elif UIn.lower() == 'yes miss' or UIn == 'yes sir':
 					Input = False
 				else:
 					print('Use one of the replies I told you too!')
 	else:
 		### Don't play
 		print('Not at the moment, but sometime soon.')
+### Checks desires to see if one is above threshold (15) and returns it
+def check_desires():
+	global desire
+	a = []
+	global des_anal
+	global des_piss
+	global des_shit
+	global des_pain
+	global des_CBT
+	global des_humiliation
+	global des_public
+	if desire == 'none':
+		if des_anal >= des_thresh_high:
+			if len( instr_anal ) >= 15:
+				a.append('anal')
+		if des_piss >= des_thresh_high:
+			if len( instr_piss ) >= 15:
+				a.append('piss')
+		if des_shit >= des_thresh_high:
+			if len( instr_shit ) >= 15:
+				a.append('shit')
+		if des_pain >= des_thresh_high:
+			if len( instr_pain ) >= 15:
+				a.append('pain')
+		if des_CBT >= des_thresh_high:
+			if len( instr_CBT ) >= 15:
+				a.append('CBT')
+		if des_humiliation >= des_thresh_high:
+			if len( instr_humiliation ) >= 15:
+				a.append('humiliation')
+		if des_public >= des_thresh_high:
+			if len( instr_public ) >= 15:
+				a.append('public')
+		if len(a) == 0:
+			a = ['none']
+		desire = a[randRange( 0, len(a) - 1 )]
+	elif desire == 'anal':
+		des_anal -= 3
+		if des_anal <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'piss':
+		des_piss -= 3
+		if des_piss <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'shit':
+		des_shit -= 3
+		if des_shit <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'pain':
+		des_pain -= 3
+		if des_pain <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'CBT':
+		des_CBT -= 3
+		if des_CBT <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'humiliation':
+		des_humiliation -= 3
+		if des_humiliation <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	elif desire == 'public':
+		des_public -= 3
+		if des_public <= des_thresh_low:
+			desire = 'none'
+			return check_desires()
+	return desire
 ### Asks a question
 def question():
 	print("Ask away " + name + ". You might not like the answer though.")
@@ -603,6 +701,11 @@ def repeat():
 repeat()
 
 ################## PROGRAM START!! #######################
+
+a = 1
+while a < 50:
+	print()
+	a = a + 1
 
 ### Greet the user
 print("Please enter your name?")
