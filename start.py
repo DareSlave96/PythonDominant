@@ -408,13 +408,21 @@ def load_prefs ():
 			gender = f.readline().rstrip('\n')
 			global des_anal
 			des_anal = int( f.readline().rstrip( '\n' ) )
+			global des_piss
 			des_piss = int( f.readline().rstrip( '\n' ) )
+			global des_shit
 			des_shit = int( f.readline().rstrip( '\n' ) )
+			global des_pain
 			des_pain = int( f.readline().rstrip( '\n' ) )
+			global des_CBT
 			des_CBT = int( f.readline().rstrip( '\n' ) )
+			global des_humiliation
 			des_humiliation = int( f.readline().rstrip( '\n' ) )
+			global des_public
 			des_public = int( f.readline().rstrip( '\n' ) )
+			global des_play
 			des_play = int( f.readline().rstrip( '\n' ) )
+			global pnts
 			pnts = int( f.readline().rstrip( '\n' ) )
 ### Make a list of all play phrases
 def create_play_list():
