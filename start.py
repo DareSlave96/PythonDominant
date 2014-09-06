@@ -22,6 +22,21 @@ list_cum = []
 list_edge = []
 list_stroke = []
 
+### Other info
+import time
+class last_sleep:
+	tm_yday = time.localtime().tm_yday
+	tm_hour = time.localtime().tm_hour
+	tm_min = time.localtime().tm_min
+class last_shit:
+	tm_yday = time.localtime().tm_yday
+	tm_hour = time.localtime().tm_hour
+	tm_min = time.localtime().tm_min
+class last_piss:
+	tm_yday = time.localtime().tm_yday
+	tm_hour = time.localtime().tm_hour
+	tm_min = time.localtime().tm_min
+
 ### Variables to store dom(me)s mood and desires
 des_anal = 0
 des_piss = 0
@@ -36,7 +51,7 @@ des_play = 50;
 pnts = 25
 
 ### Assign the current version of the program
-current_version = '3'
+current_version = '4'
 
 ### Main function
 def main():
@@ -237,7 +252,7 @@ def question():
 					print( list_cum[a] )
 				else:
 					print('You cannot cum at all today, but edge instead')
-			elif 'pee' in UIn:
+			elif 'pee' in UIn or 'piss' in UIn:
 				if can_piss() == True:
 					print('You can this time...')
 				else:
@@ -408,6 +423,15 @@ def save_prefs ():
 		f.write( str(des_public) + "\n")
 		f.write( str(des_play) + "\n")
 		f.write( str(pnts) + "\n")
+		f.write( str(last_piss.tm_yday) + "\n" )
+		f.write( str(last_piss.tm_hour) + "\n" )
+		f.write( str(last_piss.tm_min) + "\n" )
+		f.write( str(last_shit.tm_yday) + "\n" )
+		f.write( str(last_shit.tm_hour) + "\n" )
+		f.write( str(last_shit.tm_min) + "\n" )
+		f.write( str(last_sleep.tm_yday) + "\n" )
+		f.write( str(last_sleep.tm_hour) + "\n" )
+		f.write( str(last_sleep.tm_min) + "\n" )
 ### load general preferences
 def load_prefs ():
 	with open('prefs/' + current_version + '_' + name) as f:
@@ -433,6 +457,18 @@ def load_prefs ():
 			des_play = int( f.readline().rstrip( '\n' ) )
 			global pnts
 			pnts = int( f.readline().rstrip( '\n' ) )
+			global last_piss
+			last_piss.tm_yday = ( int( f.readline().rstrip('\n') ) )
+			last_piss.tm_hour = ( int( f.readline().rstrip('\n') ) )
+			last_piss.tm_min = ( int( f.readline().rstrip('\n') ) )
+			global last_shit
+			last_shit.tm_yday = ( int( f.readline().rstrip('\n') ) )
+			last_shit.tm_hour = ( int( f.readline().rstrip('\n') ) )
+			last_shit.tm_min = ( int( f.readline().rstrip('\n') ) )
+			global last_sleep
+			last_sleep.tm_yday = ( int( f.readline().rstrip('\n') ) )
+			last_sleep.tm_hour = ( int( f.readline().rstrip('\n') ) )
+			last_sleep.tm_min = ( int( f.readline().rstrip('\n') ) )
 ### Make a list of all play phrases
 def create_play_list():
 	if not 'anal' in limits:
@@ -694,13 +730,36 @@ def check_lines( a ):
 	return thing		
 ### Check to see if user can pee
 def can_piss():
-	return True
+	piss = False
+	if last_piss.tm_yday < time.localtime().tm_yday:
+		piss = True
+	elif last_piss.tm_hour < (time.localtime().tm_hour - 4):
+		piss = True
+	elif time.localtime().tm_yday < 3 and last_piss.tm_yday > 350:
+		piss = True
+	if piss == True:
+		last_piss.tm_yday = time.localtime().tm_yday
+		last_piss.tm_hour = time.localtime().tm_hour
+		last_piss.tm_min = time.localtime().tm_min
+		return True
+	return False
 ### Check to see if user can shit
 def can_shit():
-	return True
+	shit = False
+	if last_shit.tm_yday < time.localtime().tm_yday:
+		shit = True
+	elif last_shit.tm_hour < (time.localtime().tm_hour - 8):
+		shit = True
+	elif time.localtime().tm_yday < 3 and last_shit.tm_yday > 350:
+		shit = True
+	if shit == True:
+		last_shit.tm_yday = time.localtime().tm_yday
+		last_shit.tm_hour = time.localtime().tm_hour
+		last_shit.tm_min = time.localtime().tm_min
+		return True
+	return False
 ### Check to see if user can sleep
 def can_sleep():
-	import time
 	cur_hour = time.localtime().tm_hour
 	if cur_hour > 22 or cur_hour < 8:
 		return True
