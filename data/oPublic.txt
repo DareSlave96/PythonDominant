@@ -8,3 +8,17 @@ Don't wear underwear or rearrange yourself at all for the next 48 hours.
 **toy medDildo **sub_gender female **clothing fDress Next time you go out, wear a dress and have your medium dildo in you vagina and let it slide out a little.
 **toy lrgDildo **sub_gender female **clothing fSkirt Next time you go out, wear a skirt and have your large dildo in you vagina and let it slide out a little.
 **toy lrgDildo **sub_gender female **clothing fDress Next time you go out, wear a dress and have your large dildo in you vagina and let it slide out a little.
+Use a shoelace and make a collar out of it. Wear it for 48 hours.
+Use a shoelace and make an anklet out of it. Wear it for 48 hours.
+Use a shoelace and make a bracelet. Wear it for 24 hours
+**toy smlButtPlug **clothing fDress Next time you go out wear your dress, no underwear, and a butt plug.
+**toy medButtPlug **clothing fDress Next time you go out wear your dress, no underwear, and a butt plug.
+**toy lrgButtPlug **clothing fDress Next time you go out wear your dress, no underwear, and a butt plug.
+**toy infButtPlug **clothing fDress Next time you go out wear your dress, no underwear, and a butt plug.
+**toy infButtPlug **clothing fSkirt Next time you go out wear your dress, no underwear, and a butt plug.
+**toy smlButtPlug **clothing fSkirt Next time you go out wear your dress, no underwear, and a butt plug.
+**toy medButtPlug **clothing fSkirt Next time you go out wear your dress, no underwear, and a butt plug.
+**toy lrgButtPlug **clothing fSkirt Next time you go out wear your dress, no underwear, and a butt plug.
+**sub_gender female Attempt to flash your tits at someone you find hot next time you are out in public.
+**sub_gender female Attempt to flash your pussy at someone you find hot next time you are out in public.
+**sub_gender male Attempt to flash your cock at someone you find hot next time you are out in public.
