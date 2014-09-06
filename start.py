@@ -238,11 +238,20 @@ def question():
 				else:
 					print('You cannot cum at all today, but edge instead')
 			elif 'pee' in UIn:
-				print('This feature is under development')
+				if can_piss() == True:
+					print('You can this time...')
+				else:
+					print('No, ask again once you really, desperately need to piss.')
 			elif 'shit' in UIn:
-				print('This feature is under development')
+				if can_shit() == True:
+					print('Yes you can shit, this once...')
+				else:
+					print('Not at the moment, try asking again later...')
 			elif 'sleep' in UIn:
-				print('This feature is under development')
+				if can_sleep() == True:
+					print('Of course you can :)')
+				else:
+					print('Not quite yet, try asking me later.')
 			elif 'update' in UIn or 'change' in UIn:
 				if 'items' in UIn:
 					def_toys()
@@ -683,6 +692,19 @@ def check_lines( a ):
 				list_stroke.append(mod)
 				play_list.append(mod)
 	return thing		
+### Check to see if user can pee
+def can_piss():
+	return True
+### Check to see if user can shit
+def can_shit():
+	return True
+### Check to see if user can sleep
+def can_sleep():
+	import time
+	cur_hour = time.localtime().tm_hour
+	if cur_hour > 22 or cur_hour < 8:
+		return True
+	return False
 
 ### Repeating function
 def repeat():
